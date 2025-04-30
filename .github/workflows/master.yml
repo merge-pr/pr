@@ -7,10 +7,10 @@ name: IOSMCN Master workflow
 on:
   pull_request:
     branches:
-      - iosmcnmaster
+      - main
   push:
     branches:
-      - iosmcnmaster
+      - main
 
 jobs:
 
@@ -71,7 +71,7 @@ jobs:
   hadolint:
     name: hadolint
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ios-mcn-core'
+    if: github.repository_owner == 'raise-pr'
     steps:
       - uses: actions/checkout@v4
 
@@ -86,7 +86,7 @@ jobs:
 
   license-check:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ios-mcn-core'
+    if: github.repository_owner == 'raise-pr'
     steps:
       - uses: actions/checkout@v4
 
@@ -95,7 +95,7 @@ jobs:
 
   fossa-check:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ios-mcn-core'
+    if: github.repository_owner == 'raise-pr'
     steps:
       - uses: actions/checkout@v4
 
@@ -106,7 +106,7 @@ jobs:
 
   unit-tests:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ios-mcn-core'
+    if: github.repository_owner == 'raise-pr'
     steps:
       - uses: actions/checkout@v4
 
@@ -118,13 +118,13 @@ jobs:
         run: go test ./...
   docker-build-push-images:
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ios-mcn-core'
+    if: github.repository_owner == 'raise-pr'
     needs: unit-tests
     
     env:
       REGISTRY: ghcr.io
       DOCKER_REGISTRY: ghcr.io/
-      DOCKER_REPOSITORY: ios-mcn-core/
+      DOCKER_REPOSITORY: merge-pr/
     steps:
       - uses: actions/checkout@v4
 
