@@ -33,7 +33,7 @@ jobs:
           staticcheck ./... > reports/staticcheck.txt || true
           cat reports/staticcheck.txt
           
-      - name: Process Report
+      - name: Process Report test
         run: |
           temp_report="reports/temp_report.txt"
           if [ -s reports/staticcheck.txt ]; then
